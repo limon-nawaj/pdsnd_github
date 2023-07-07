@@ -9,7 +9,6 @@ CITY_DATA = { 'chicago': 'chicago.csv',
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
-
     Returns:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
@@ -43,11 +42,9 @@ def get_filters():
     print('-'*40)
     return city, month, day
 
-
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
-
     Args:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
@@ -79,10 +76,8 @@ def load_data(city, month, day):
     
     return df
 
-
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
-
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
@@ -96,6 +91,7 @@ def time_stats(df):
     
     ## get hour from the 'Start Time' column to create an hour column
     df['hour'] = df['Start Time'].dt.hour
+    
     # find the most popular hour
     popular_hour = df['hour'].mode()[0]
     print('Most Popular Start Hour:', popular_hour)
@@ -103,10 +99,8 @@ def time_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
-
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
@@ -118,7 +112,6 @@ def station_stats(df):
     popular_end_station = df['End Station'].mode()[0]
     print("The most popular end station:", popular_end_station)
 
-    # TO DO: display most frequent combination of start station and end station trip
     # Create a new column 'Trip' combining start station and end station
     df['Trip'] = df['Start Station'] + ' to ' + df['End Station']
     
@@ -131,10 +124,8 @@ def station_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
-
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
@@ -149,10 +140,8 @@ def trip_duration_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-
 def user_stats(df):
     """Displays statistics on bikeshare users."""
-
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
@@ -194,6 +183,7 @@ def main():
                 start_loc += 5
                 view_data = input("Do you wish to continue? Enter 'yes' or 'no': ")
         else:
+            print("\nYou will see all the data of bike sharing.")
             time_stats(df)
             station_stats(df)
             trip_duration_stats(df)
@@ -202,7 +192,6 @@ def main():
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
-
 
 if __name__ == "__main__":
 	main()
