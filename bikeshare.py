@@ -96,6 +96,7 @@ def time_stats(df):
     
     ## get hour from the 'Start Time' column to create an hour column
     df['hour'] = df['Start Time'].dt.hour
+    
     # find the most popular hour
     popular_hour = df['hour'].mode()[0]
     print('Most Popular Start Hour:', popular_hour)
@@ -118,7 +119,6 @@ def station_stats(df):
     popular_end_station = df['End Station'].mode()[0]
     print("The most popular end station:", popular_end_station)
 
-    # TO DO: display most frequent combination of start station and end station trip
     # Create a new column 'Trip' combining start station and end station
     df['Trip'] = df['Start Station'] + ' to ' + df['End Station']
     
@@ -194,6 +194,7 @@ def main():
                 start_loc += 5
                 view_data = input("Do you wish to continue? Enter 'yes' or 'no': ")
         else:
+            print("\nYou will see all the data of bike sharing.")
             time_stats(df)
             station_stats(df)
             trip_duration_stats(df)
